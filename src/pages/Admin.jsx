@@ -8,37 +8,29 @@ export default function Admin() {
   const [preco, setPreco] = useState("");
   const [imagem, setImagem] = useState(null);
 
-  const [editandoId, setEditandoId] = useState(null);
-
   const [produtos, setProdutos] = useState([]);
 
-  // carregar produtos
+  const [editandoId, setEditandoId] = useState(null);
+
   useEffect(() => {
     carregarProdutos();
   }, []);
 
   async function carregarProdutos() {
 
-    const { data, error } = await supabase
+    const { data } = await supabase
       .from("produtos")
       .select("*")
       .order("id", { ascending: false });
 
-    if (error) {
-      console.log(error);
-      return;
-    }
-
-    setProdutos(data);
+    setProdutos(data || []);
 
   }
 
-  // adicionar ou editar
   async function adicionarProduto() {
 
     let imagemUrl = null;
 
-    // upload imagem
     if (imagem) {
 
       const nomeArquivo = `${Date.now()}.png`;
@@ -49,7 +41,6 @@ export default function Admin() {
         .upload(nomeArquivo, imagem);
 
       if (erroUpload) {
-        console.log("ERRO UPLOAD:", erroUpload);
         alert("Erro upload");
         return;
       }
@@ -63,10 +54,9 @@ export default function Admin() {
 
     }
 
-    // editar produto
     if (editandoId) {
 
-      const { error } = await supabase
+      await supabase
         .from("produtos")
         .update({
           titulo,
@@ -76,27 +66,13 @@ export default function Admin() {
         })
         .eq("id", editandoId);
 
-      if (error) {
-        console.log(error);
-        alert("Erro ao atualizar");
-        return;
-      }
-
       alert("Produto atualizado!");
 
       setEditandoId(null);
 
-    }
+    } else {
 
-    // novo produto
-    else {
-
-      if (!imagemUrl) {
-        alert("Escolha uma imagem");
-        return;
-      }
-
-      const { error } = await supabase
+      await supabase
         .from("produtos")
         .insert([
           {
@@ -107,17 +83,10 @@ export default function Admin() {
           },
         ]);
 
-      if (error) {
-        console.log(error);
-        alert("Erro ao salvar produto");
-        return;
-      }
-
       alert("Produto adicionado!");
 
     }
 
-    // limpar
     setTitulo("");
     setDescricao("");
     setPreco("");
@@ -127,25 +96,17 @@ export default function Admin() {
 
   }
 
-  // excluir
   async function excluirProduto(id) {
 
-    const { error } = await supabase
+    await supabase
       .from("produtos")
       .delete()
       .eq("id", id);
-
-    if (error) {
-      console.log(error);
-      alert("Erro ao excluir");
-      return;
-    }
 
     carregarProdutos();
 
   }
 
-  // editar
   function editarProduto(produto) {
 
     setTitulo(produto.titulo);
@@ -157,48 +118,27 @@ export default function Admin() {
   }
 
   return (
-    <div
-      style={{
-        padding: "40px",
-        background: "#f5f5f5",
-        minHeight: "100vh",
-      }}
-    >
+    <div className="min-h-screen bg-gray-100 p-10">
 
-      <h1
-        style={{
-          marginBottom: "30px",
-          fontSize: "40px",
-        }}
-      >
+      <h1 className="text-5xl font-bold mb-10 text-pink-500">
         Painel Admin
       </h1>
 
-      {/* formulário */}
-
-      <div
-        style={{
-          background: "white",
-          padding: "20px",
-          borderRadius: "16px",
-          marginBottom: "40px",
-          boxShadow: "0 4px 10px rgba(0,0,0,0.1)",
-        }}
-      >
+      <div className="bg-white p-8 rounded-3xl shadow-xl mb-10">
 
         <input
           type="text"
           placeholder="Título"
           value={titulo}
           onChange={(e) => setTitulo(e.target.value)}
-          style={inputStyle}
+          className="w-full border p-4 rounded-xl mb-4"
         />
 
         <textarea
           placeholder="Descrição"
           value={descricao}
           onChange={(e) => setDescricao(e.target.value)}
-          style={inputStyle}
+          className="w-full border p-4 rounded-xl mb-4"
         />
 
         <input
@@ -206,74 +146,63 @@ export default function Admin() {
           placeholder="Preço"
           value={preco}
           onChange={(e) => setPreco(e.target.value)}
-          style={inputStyle}
+          className="w-full border p-4 rounded-xl mb-4"
         />
 
         <input
           type="file"
           onChange={(e) => setImagem(e.target.files[0])}
-          style={inputStyle}
+          className="w-full border p-4 rounded-xl mb-6"
         />
 
         <button
           onClick={adicionarProduto}
-          style={botaoAdicionar}
+          className="w-full bg-pink-500 hover:bg-pink-600 text-white p-4 rounded-xl font-bold"
         >
           {editandoId ? "Atualizar Produto" : "Adicionar Produto"}
         </button>
 
       </div>
 
-      {/* lista */}
-
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
-          gap: "20px",
-        }}
-      >
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 
         {produtos.map((produto) => (
 
           <div
             key={produto.id}
-            style={{
-              background: "white",
-              borderRadius: "16px",
-              overflow: "hidden",
-              boxShadow: "0 4px 10px rgba(0,0,0,0.1)",
-            }}
+            className="bg-white rounded-3xl overflow-hidden shadow-lg"
           >
 
             <img
               src={produto.imagem}
               alt={produto.titulo}
-              style={{
-                width: "100%",
-                height: "200px",
-                objectFit: "cover",
-              }}
+              className="w-full h-72 object-cover"
             />
 
-            <div style={{ padding: "20px" }}>
+            <div className="p-6">
 
-              <h2>{produto.titulo}</h2>
+              <h2 className="text-2xl font-bold mb-2">
+                {produto.titulo}
+              </h2>
 
-              <p>{produto.descricao}</p>
+              <p className="text-gray-600 mb-4">
+                {produto.descricao}
+              </p>
 
-              <h3>R$ {produto.preco}</h3>
+              <h3 className="text-pink-500 text-2xl font-bold mb-4">
+                R$ {produto.preco}
+              </h3>
 
               <button
                 onClick={() => editarProduto(produto)}
-                style={botaoEditar}
+                className="w-full bg-blue-500 hover:bg-blue-600 text-white p-3 rounded-xl mb-3"
               >
                 Editar
               </button>
 
               <button
                 onClick={() => excluirProduto(produto.id)}
-                style={botaoExcluir}
+                className="w-full bg-red-500 hover:bg-red-600 text-white p-3 rounded-xl"
               >
                 Excluir
               </button>
@@ -288,46 +217,4 @@ export default function Admin() {
 
     </div>
   );
-
 }
-
-const inputStyle = {
-  width: "100%",
-  padding: "12px",
-  marginBottom: "15px",
-  borderRadius: "8px",
-  border: "1px solid #ccc",
-};
-
-const botaoAdicionar = {
-  background: "#ff4d8d",
-  color: "white",
-  border: "none",
-  padding: "15px",
-  width: "100%",
-  borderRadius: "10px",
-  cursor: "pointer",
-  fontSize: "16px",
-};
-
-const botaoEditar = {
-  background: "#4d79ff",
-  color: "white",
-  border: "none",
-  padding: "10px",
-  width: "100%",
-  borderRadius: "10px",
-  cursor: "pointer",
-  marginTop: "10px",
-};
-
-const botaoExcluir = {
-  background: "#ff3333",
-  color: "white",
-  border: "none",
-  padding: "10px",
-  width: "100%",
-  borderRadius: "10px",
-  cursor: "pointer",
-  marginTop: "10px",
-};

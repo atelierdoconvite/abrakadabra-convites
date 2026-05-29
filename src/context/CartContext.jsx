@@ -7,9 +7,7 @@ export function CartProvider({ children }) {
   const [carrinho, setCarrinho] = useState([]);
 
   function adicionarCarrinho(produto) {
-
     setCarrinho((prev) => [...prev, produto]);
-
   }
 
   function removerCarrinho(index) {
@@ -33,5 +31,4 @@ export function CartProvider({ children }) {
       {children}
     </CartContext.Provider>
   );
-
 }

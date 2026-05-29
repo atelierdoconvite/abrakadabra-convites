@@ -9,7 +9,9 @@ export default function Login() {
 
   const navigate = useNavigate();
 
-  async function fazerLogin() {
+  async function fazerLogin(e) {
+
+    e.preventDefault();
 
     const { error } = await supabase.auth.signInWithPassword({
       email,
@@ -17,7 +19,7 @@ export default function Login() {
     });
 
     if (error) {
-      alert("Login inválido");
+      alert("Email ou senha inválidos");
       return;
     }
 
@@ -26,60 +28,42 @@ export default function Login() {
   }
 
   return (
-    <div
-      style={{
-        maxWidth: "400px",
-        margin: "100px auto",
-        padding: "30px",
-        background: "white",
-        borderRadius: "16px",
-      }}
-    >
+    <div className="min-h-screen flex items-center justify-center bg-gray-100">
 
-      <h1>Login Admin</h1>
-
-      <input
-        type="email"
-        placeholder="Email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        style={inputStyle}
-      />
-
-      <input
-        type="password"
-        placeholder="Senha"
-        value={senha}
-        onChange={(e) => setSenha(e.target.value)}
-        style={inputStyle}
-      />
-
-      <button
-        onClick={fazerLogin}
-        style={botao}
+      <form
+        onSubmit={fazerLogin}
+        className="bg-white p-10 rounded-3xl shadow-xl w-full max-w-md"
       >
-        Entrar
-      </button>
+
+        <h1 className="text-4xl font-bold mb-8 text-center text-pink-500">
+          Login Admin
+        </h1>
+
+        <input
+          type="email"
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          className="w-full border p-4 rounded-xl mb-4"
+        />
+
+        <input
+          type="password"
+          placeholder="Senha"
+          value={senha}
+          onChange={(e) => setSenha(e.target.value)}
+          className="w-full border p-4 rounded-xl mb-6"
+        />
+
+        <button
+          type="submit"
+          className="w-full bg-pink-500 hover:bg-pink-600 text-white p-4 rounded-xl font-bold"
+        >
+          Entrar
+        </button>
+
+      </form>
 
     </div>
   );
-
 }
-
-const inputStyle = {
-  width: "100%",
-  padding: "12px",
-  marginBottom: "15px",
-  borderRadius: "8px",
-  border: "1px solid #ccc",
-};
-
-const botao = {
-  width: "100%",
-  padding: "14px",
-  border: "none",
-  background: "#ff4d8d",
-  color: "white",
-  borderRadius: "10px",
-  cursor: "pointer",
-};

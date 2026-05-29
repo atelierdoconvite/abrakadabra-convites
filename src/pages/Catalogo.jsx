@@ -33,7 +33,6 @@ export default function Catalogo() {
 
   }
 
-  // total
   const total = carrinho.reduce(
     (acc, item) => acc + Number(item.preco),
     0
@@ -41,8 +40,6 @@ export default function Catalogo() {
 
   return (
     <div className="min-h-screen bg-gray-100">
-
-      {/* NAVBAR */}
 
       <header className="bg-white shadow-md sticky top-0 z-50">
 
@@ -80,8 +77,6 @@ export default function Catalogo() {
 
       </header>
 
-      {/* HERO */}
-
       <section className="bg-gradient-to-r from-pink-500 to-purple-500 text-white py-20">
 
         <div className="max-w-7xl mx-auto px-6">
@@ -95,15 +90,9 @@ export default function Catalogo() {
             festas e momentos especiais.
           </p>
 
-          <button className="bg-white text-pink-500 px-8 py-4 rounded-xl font-bold hover:scale-105 transition">
-            Comprar Agora
-          </button>
-
         </div>
 
       </section>
-
-      {/* PRODUTOS */}
 
       <section className="max-w-7xl mx-auto px-6 py-16">
 
@@ -117,7 +106,7 @@ export default function Catalogo() {
 
             <div
               key={produto.id}
-              className="bg-white rounded-3xl overflow-hidden shadow-lg hover:scale-105 transition duration-300"
+              className="bg-white rounded-3xl overflow-hidden shadow-lg hover:scale-105 transition"
             >
 
               <img
@@ -161,108 +150,6 @@ export default function Catalogo() {
 
       </section>
 
-      {/* CARRINHO */}
-
-      {abrirCarrinho && (
-
-        <div className="fixed top-0 right-0 w-96 h-full bg-white shadow-2xl z-50 p-6 overflow-y-auto">
-
-          <div className="flex justify-between items-center mb-6">
-
-            <h2 className="text-3xl font-bold">
-              Carrinho
-            </h2>
-
-            <button
-              onClick={() => setAbrirCarrinho(false)}
-              className="text-2xl"
-            >
-              ✕
-            </button>
-
-          </div>
-
-          {carrinho.length === 0 ? (
-
-            <p>Carrinho vazio</p>
-
-          ) : (
-
-            <div className="space-y-4">
-
-              {carrinho.map((item, index) => (
-
-                <div
-                  key={index}
-                  className="flex gap-4 bg-gray-100 p-4 rounded-xl"
-                >
-
-                  <img
-                    src={item.imagem}
-                    alt={item.titulo}
-                    className="w-20 h-20 object-cover rounded-lg"
-                  />
-
-                  <div className="flex-1">
-
-                    <h3 className="font-bold">
-                      {item.titulo}
-                    </h3>
-
-                    <p className="text-pink-500 font-bold">
-                      R$ {item.preco}
-                    </p>
-
-                    <button
-                      onClick={() => removerCarrinho(index)}
-                      className="text-red-500 mt-2"
-                    >
-                      Remover
-                    </button>
-
-                  </div>
-
-                </div>
-
-              ))}
-
-              <div className="border-t pt-4">
-
-                <h3 className="text-2xl font-bold">
-                  Total: R$ {total}
-                </h3>
-
-                <button
-  onClick={() => {
-
-    const mensagem = carrinho
-      .map(
-        (item) =>
-          `• ${item.titulo} - R$ ${item.preco}`
-      )
-      .join("%0A");
-
-    const url = `https://wa.me/5513981922078?text=Olá,%20quero%20comprar:%0A%0A${mensagem}%0A%0ATotal:%20R$%20${total}`;
-
-    window.open(url, "_blank");
-
-  }}
-  className="w-full bg-pink-500 text-white py-4 rounded-xl mt-4 hover:bg-pink-600"
->
-  Finalizar Compra
-</button>
-
-              </div>
-
-            </div>
-
-          )}
-
-        </div>
-
-      )}
-
     </div>
   );
-
 }
