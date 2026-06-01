@@ -1,15 +1,7 @@
 import { useEffect, useState } from "react";
 import { supabase } from "../services/supabase";
-export default function Home(export default function Home() {) {
-  const temas = [
-    "🎮 Minecraft",
-    "👑 Princesas",
-    "🦄 Unicórnio",
-    "🚀 Astronauta",
-    "🦁 Safári",
-    "🌸 Jardim Encantado",
-  ];
-const [destaques, setDestaques] = useState([]);
+export default function Home() {
+  const [destaques, setDestaques] = useState([]);
 
 useEffect(() => {
   carregarDestaques();
@@ -29,6 +21,15 @@ async function carregarDestaques() {
 
   setDestaques(data || []);
 }
+  const temas = [
+    "🎮 Minecraft",
+    "👑 Princesas",
+    "🦄 Unicórnio",
+    "🚀 Astronauta",
+    "🦁 Safári",
+    "🌸 Jardim Encantado",
+  ];
+
   return (
     <div
       style={{
