@@ -1,1 +1,78 @@
-@import "tailwindcss";
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f7f2ea;
+  color: #2b1b14;
+}
+
+/* CONTAINER PADRÃO */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* NAVBAR */
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+  background: #fff;
+  border-bottom: 1px solid #e8dccd;
+}
+
+/* HERO */
+.hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  padding: 80px 40px;
+  align-items: center;
+}
+
+.hero h1 {
+  font-size: 48px;
+  font-family: serif;
+}
+
+/* BOTÃO */
+button {
+  background: #2b1b14;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 30px;
+  cursor: pointer;
+}
+
+/* GRID DE PRODUTOS */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
+  padding: 40px;
+}
+
+/* CARD */
+.card {
+  background: white;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  transition: 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+}
+
+.card-content {
+  padding: 15px;
+}
