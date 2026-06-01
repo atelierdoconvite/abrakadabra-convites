@@ -1,4 +1,6 @@
-export default function Home() {
+import { useEffect, useState } from "react";
+import { supabase } from "../services/supabase";
+export default function Home(export default function Home() {) {
   const temas = [
     "🎮 Minecraft",
     "👑 Princesas",
@@ -7,7 +9,26 @@ export default function Home() {
     "🦁 Safári",
     "🌸 Jardim Encantado",
   ];
+const [destaques, setDestaques] = useState([]);
 
+useEffect(() => {
+  carregarDestaques();
+}, []);
+
+async function carregarDestaques() {
+  const { data, error } = await supabase
+    .from("produtos")
+    .select("*")
+    .order("id", { ascending: false })
+    .limit(6);
+
+  if (error) {
+    console.log(error);
+    return;
+  }
+
+  setDestaques(data || []);
+}
   return (
     <div
       style={{
@@ -312,7 +333,97 @@ export default function Home() {
           </div>
         </div>
       </section>
+<section
+  style={{
+    maxWidth: 1200,
+    margin: "0 auto",
+    padding: "80px 20px",
+  }}
+>
+  <h2
+    style={{
+      textAlign: "center",
+      marginBottom: 40,
+    }}
+  >
+    ✨ Convites em Destaque
+  </h2>
 
+  <div
+    style={{
+      display: "grid",
+      gridTemplateColumns:
+        "repeat(auto-fit,minmax(250px,1fr))",
+      gap: 25,
+    }}
+  >
+    {destaques.map((produto) => (
+      <div
+        key={produto.id}
+        style={{
+          background: "#fff",
+          borderRadius: 20,
+          overflow: "hidden",
+          boxShadow:
+            "0 10px 30px rgba(0,0,0,0.08)",
+        }}
+      >
+        <img
+          src={produto.imagem}
+          alt={produto.titulo}
+          style={{
+            width: "100%",
+            height: 350,
+            objectFit: "cover",
+          }}
+        />
+
+        <div style={{ padding: 20 }}>
+          <h3>{produto.titulo}</h3>
+
+          <p
+            style={{
+              color: "#777",
+              fontSize: 14,
+            }}
+          >
+            {produto.descricao}
+          </p>
+
+          <h4
+            style={{
+              color: "#a855f7",
+              marginTop: 10,
+            }}
+          >
+            R$ {produto.preco}
+          </h4>
+        </div>
+      </div>
+    ))}
+  </div>
+
+  <div
+    style={{
+      textAlign: "center",
+      marginTop: 40,
+    }}
+  >
+    <a
+      href="/catalogo"
+      style={{
+        background:
+          "linear-gradient(135deg,#ec4899,#a855f7)",
+        color: "#fff",
+        textDecoration: "none",
+        padding: "14px 30px",
+        borderRadius: 30,
+      }}
+    >
+      Ver Todos os Convites
+    </a>
+  </div>
+</section>
       {/* CTA FINAL */}
 
       <section
