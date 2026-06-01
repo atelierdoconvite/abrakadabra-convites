@@ -9,6 +9,13 @@ const [modalAberto, setModalAberto] = useState(false);
 const [conviteSelecionado, setConviteSelecionado] = useState(null);
   const { carrinho, adicionarCarrinho } =
     useContext(CartContext);
+    const [carrinhoAberto, setCarrinhoAberto] = useState(false);
+    const {
+  carrinho,
+  adicionarCarrinho,
+  removerCarrinho,
+  total
+} = useContext(CartContext);
 
   useEffect(() => {
     carregarProdutos();
@@ -80,31 +87,33 @@ function fecharModal() {
         </div>
 
         <div
-          style={{
-            position: "relative",
-          }}
-        >
-          <ShoppingCart />
+  onClick={() => setCarrinhoAberto(true)}
+  style={{
+    position: "relative",
+    cursor: "pointer"
+  }}
+>
+  <ShoppingCart size={28} />
 
-          <span
-            style={{
-              position: "absolute",
-              top: -8,
-              right: -10,
-              width: 20,
-              height: 20,
-              borderRadius: "50%",
-              background: "#a855f7",
-              color: "#fff",
-              fontSize: 11,
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            {carrinho.length}
-          </span>
-        </div>
+  <span
+    style={{
+      position: "absolute",
+      top: -8,
+      right: -10,
+      background: "#a855f7",
+      color: "#fff",
+      width: 20,
+      height: 20,
+      borderRadius: "50%",
+      fontSize: 11,
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center"
+    }}
+  >
+    {carrinho.length}
+  </span>
+</div>
       </header>
 
       <div style={{ height: 90 }} />
@@ -584,6 +593,118 @@ function fecharModal() {
   </div>
 
 )}
+{carrinhoAberto && (
+
+<div
+  style={{
+    position: "fixed",
+    inset: 0,
+    background: "rgba(0,0,0,.5)",
+    zIndex: 9999
+  }}
+  onClick={() => setCarrinhoAberto(false)}
+>
+
+  <div
+    onClick={(e) => e.stopPropagation()}
+    style={{
+      position: "absolute",
+      right: 0,
+      top: 0,
+      width: 400,
+      maxWidth: "100%",
+      height: "100%",
+      background: "#fff",
+      padding: 20,
+      overflowY: "auto"
+    }}
+  >
+
+    <h2>🛒 Meu Carrinho</h2>
+
+    {carrinho.length === 0 ? (
+
+      <p>Seu carrinho está vazio.</p>
+
+    ) : (
+
+      <>
+        {carrinho.map((item, index) => (
+
+          <div
+            key={index}
+            style={{
+              borderBottom: "1px solid #eee",
+              padding: "12px 0"
+            }}
+          >
+            <strong>{item.titulo}</strong>
+
+            <p>R$ {item.preco}</p>
+
+            <button
+              onClick={() =>
+                removerCarrinho(index)
+              }
+              style={{
+                border: "none",
+                background: "red",
+                color: "#fff",
+                padding: "6px 12px",
+                borderRadius: 20
+              }}
+            >
+              Remover
+            </button>
+          </div>
+
+        ))}
+
+        <h3
+          style={{
+            marginTop: 20
+          }}
+        >
+          Total: R$ {total.toFixed(2)}
+        </h3>
+
+      </>
+    )}
+
+  </div>
+
+</div>
+
+)}
+<a
+  href={`https://wa.me/5511999999999?text=${encodeURIComponent(
+`Olá! Gostaria de encomendar:
+
+${carrinho
+  .map(
+    (item) =>
+      `• ${item.titulo} - R$ ${item.preco}`
+  )
+  .join("\n")}
+
+Total: R$ ${total.toFixed(2)}
+`
+  )}`}
+  target="_blank"
+  rel="noreferrer"
+  style={{
+    display: "block",
+    marginTop: 20,
+    background: "#25d366",
+    color: "#fff",
+    textAlign: "center",
+    padding: 14,
+    borderRadius: 30,
+    textDecoration: "none"
+  }}
+>
+  💬 Finalizar Pedido
+</a>
     </div>
   );
 }
