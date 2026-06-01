@@ -4,13 +4,7 @@ import { CartContext } from "../context/CartContext";
 import { ShoppingCart } from "lucide-react";
 
 export default function Catalogo() {
-  const [produtos, setProdutos] = useState([]);
-const [modalAberto, setModalAberto] = useState(false);
-const [conviteSelecionado, setConviteSelecionado] = useState(null);
-  const { carrinho, adicionarCarrinho } =
-    useContext(CartContext);
-    const [carrinhoAberto, setCarrinhoAberto] = useState(false);
-    const {
+const {
   carrinho,
   adicionarCarrinho,
   removerCarrinho,
