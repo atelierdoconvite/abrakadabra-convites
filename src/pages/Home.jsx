@@ -93,382 +93,167 @@ async function carregarDestaques() {
       <div style={{ height: 90 }} />
 
       {/* HERO */}
+{/* HERO */}
 
-      <section
-        style={{
-          maxWidth: 1200,
-          margin: "0 auto",
-          padding: "80px 20px",
-          display: "grid",
-          gridTemplateColumns:
-            "repeat(auto-fit,minmax(350px,1fr))",
-          gap: 40,
-          alignItems: "center",
-        }}
-      >
-        <div>
-          <span
-            style={{
-              background: "#f3e8ff",
-              color: "#9333ea",
-              padding: "10px 18px",
-              borderRadius: 30,
-            }}
-          >
-            ✨ Convites Digitais Personalizados
-          </span>
-
-          <h2
-            style={{
-              fontSize: 58,
-              lineHeight: 1.1,
-              marginTop: 25,
-            }}
-          >
-            Transformamos momentos especiais em magia
-          </h2>
-
-          <p
-            style={{
-              fontSize: 18,
-              color: "#6b5d50",
-              lineHeight: 1.8,
-              marginTop: 20,
-            }}
-          >
-            Convites digitais criativos e personalizados
-            para aniversários, chás revelação,
-            casamentos e eventos inesquecíveis.
-          </p>
-
-          <div
-            style={{
-              display: "flex",
-              gap: 15,
-              flexWrap: "wrap",
-              marginTop: 30,
-            }}
-          >
-            <a
-              href="/catalogo"
-              style={{
-                background:
-                  "linear-gradient(135deg,#ec4899,#a855f7)",
-                color: "#fff",
-                textDecoration: "none",
-                padding: "15px 28px",
-                borderRadius: 30,
-              }}
-            >
-              🎨 Ver Catálogo
-            </a>
-
-            <a
-              href="https://wa.me/5513981922078"
-              target="_blank"
-              rel="noreferrer"
-              style={{
-                background: "#25d366",
-                color: "#fff",
-                textDecoration: "none",
-                padding: "15px 28px",
-                borderRadius: 30,
-              }}
-            >
-              💬 WhatsApp
-            </a>
-          </div>
-        </div>
-
-        <div>
-          <img
-            src="https://images.unsplash.com/photo-1513151233558-d860c5398176"
-            alt="Festa"
-            style={{
-              width: "100%",
-              borderRadius: 30,
-              boxShadow:
-                "0 20px 50px rgba(0,0,0,0.15)",
-            }}
-          />
-        </div>
-      </section>
-
-      {/* ESTATÍSTICAS */}
-
-      <section
-        style={{
-          maxWidth: 1200,
-          margin: "0 auto",
-          padding: "0 20px 80px",
-        }}
-      >
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns:
-              "repeat(auto-fit,minmax(220px,1fr))",
-            gap: 20,
-          }}
-        >
-          {[
-            ["1000+", "Convites Entregues"],
-            ["500+", "Clientes Felizes"],
-            ["5⭐", "Avaliação Média"],
-            ["24h", "Entrega Rápida"],
-          ].map((item) => (
-            <div
-              key={item[0]}
-              style={{
-                background: "#fff",
-                borderRadius: 20,
-                padding: 30,
-                textAlign: "center",
-                boxShadow:
-                  "0 10px 25px rgba(0,0,0,0.05)",
-              }}
-            >
-              <h3
-                style={{
-                  color: "#a855f7",
-                  fontSize: 40,
-                }}
-              >
-                {item[0]}
-              </h3>
-
-              <p>{item[1]}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* TEMAS */}
-
-      <section
-        style={{
-          padding: "0 20px 80px",
-          textAlign: "center",
-        }}
-      >
-        <h2>🌟 Temas Mais Procurados</h2>
-
-        <div
-          style={{
-            marginTop: 30,
-            display: "flex",
-            flexWrap: "wrap",
-            gap: 15,
-            justifyContent: "center",
-          }}
-        >
-          {temas.map((tema) => (
-            <div
-              key={tema}
-              style={{
-                background: "#fff",
-                padding: "15px 25px",
-                borderRadius: 30,
-                boxShadow:
-                  "0 6px 15px rgba(0,0,0,0.08)",
-              }}
-            >
-              {tema}
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* COMO FUNCIONA */}
-
-      <section
-        style={{
-          background: "#fff",
-          padding: "80px 20px",
-        }}
-      >
-        <h2
-          style={{
-            textAlign: "center",
-            marginBottom: 50,
-          }}
-        >
-          ✨ Como Funciona
-        </h2>
-
-        <div
-          style={{
-            maxWidth: 1200,
-            margin: "0 auto",
-            display: "grid",
-            gridTemplateColumns:
-              "repeat(auto-fit,minmax(250px,1fr))",
-            gap: 25,
-          }}
-        >
-          <div
-            style={{
-              textAlign: "center",
-            }}
-          >
-            <h3>🎨 Escolha</h3>
-            <p>Escolha seu convite favorito.</p>
-          </div>
-
-          <div
-            style={{
-              textAlign: "center",
-            }}
-          >
-            <h3>✨ Personalize</h3>
-            <p>Envie os dados da festa.</p>
-          </div>
-
-          <div
-            style={{
-              textAlign: "center",
-            }}
-          >
-            <h3>📱 Receba</h3>
-            <p>Pronto pelo WhatsApp.</p>
-          </div>
-        </div>
-      </section>
 <section
   style={{
     maxWidth: 1200,
     margin: "0 auto",
     padding: "80px 20px",
+    display: "grid",
+    gridTemplateColumns:
+      "repeat(auto-fit,minmax(350px,1fr))",
+    gap: 60,
+    alignItems: "center",
   }}
 >
-  <h2
-    style={{
-      textAlign: "center",
-      marginBottom: 40,
-    }}
-  >
-    ✨ Convites em Destaque
-  </h2>
+  {/* TEXTO */}
 
-  <div
-    style={{
-      display: "grid",
-      gridTemplateColumns:
-        "repeat(auto-fit,minmax(250px,1fr))",
-      gap: 25,
-    }}
-  >
-    {destaques.map((produto) => (
-      <div
-        key={produto.id}
-        style={{
-          background: "#fff",
-          borderRadius: 20,
-          overflow: "hidden",
-          boxShadow:
-            "0 10px 30px rgba(0,0,0,0.08)",
-        }}
-      >
-        <img
-          src={produto.imagem}
-          alt={produto.titulo}
-          style={{
-            width: "100%",
-            height: 350,
-            objectFit: "cover",
-          }}
-        />
-
-        <div style={{ padding: 20 }}>
-          <h3>{produto.titulo}</h3>
-
-          <p
-            style={{
-              color: "#777",
-              fontSize: 14,
-            }}
-          >
-            {produto.descricao}
-          </p>
-
-          <h4
-            style={{
-              color: "#a855f7",
-              marginTop: 10,
-            }}
-          >
-            R$ {produto.preco}
-          </h4>
-        </div>
-      </div>
-    ))}
-  </div>
-
-  <div
-    style={{
-      textAlign: "center",
-      marginTop: 40,
-    }}
-  >
-    <a
-      href="/catalogo"
+  <div>
+    <span
       style={{
-        background:
-          "linear-gradient(135deg,#ec4899,#a855f7)",
-        color: "#fff",
-        textDecoration: "none",
-        padding: "14px 30px",
+        background: "#efe7dd",
+        color: "#8b6b4a",
+        padding: "10px 18px",
         borderRadius: 30,
+        fontWeight: "bold",
       }}
     >
-      Ver Todos os Convites
-    </a>
-  </div>
-</section>
-      {/* CTA FINAL */}
+      ✨ Convites Digitais Premium
+    </span>
 
-      <section
+    <h2
+      style={{
+        fontSize: 58,
+        lineHeight: 1.1,
+        marginTop: 25,
+        color: "#3d2c1f",
+      }}
+    >
+      Convites que transformam
+      <br />
+      momentos em memórias
+    </h2>
+
+    <p
+      style={{
+        fontSize: 18,
+        color: "#6b5d50",
+        lineHeight: 1.8,
+        marginTop: 20,
+      }}
+    >
+      Convites digitais personalizados
+      para aniversários, casamentos,
+      chá revelação, formaturas e
+      momentos inesquecíveis.
+    </p>
+
+    <div
+      style={{
+        display: "flex",
+        gap: 15,
+        flexWrap: "wrap",
+        marginTop: 30,
+      }}
+    >
+      <a
+        href="/catalogo"
         style={{
-          padding: "100px 20px",
-          textAlign: "center",
-          background:
-            "linear-gradient(135deg,#ec4899,#a855f7)",
+          background: "#8b6b4a",
           color: "#fff",
+          textDecoration: "none",
+          padding: "15px 28px",
+          borderRadius: 12,
+          fontWeight: "bold",
         }}
       >
-        <h2
-          style={{
-            fontSize: 50,
-          }}
-        >
-          ✨ Pronta para criar algo mágico?
-        </h2>
+        Ver Catálogo
+      </a>
 
-        <p
-          style={{
-            marginTop: 20,
-            fontSize: 18,
-          }}
-        >
-          Seu convite personalizado está a poucos cliques.
-        </p>
+      <a
+        href="https://wa.me/5513981922078"
+        target="_blank"
+        rel="noreferrer"
+        style={{
+          border: "2px solid #8b6b4a",
+          color: "#8b6b4a",
+          textDecoration: "none",
+          padding: "15px 28px",
+          borderRadius: 12,
+          fontWeight: "bold",
+        }}
+      >
+        WhatsApp
+      </a>
+    </div>
+  </div>
 
-        <a
-          href="/catalogo"
-          style={{
-            display: "inline-block",
-            marginTop: 30,
-            background: "#fff",
-            color: "#9333ea",
-            padding: "16px 30px",
-            borderRadius: 30,
-            textDecoration: "none",
-            fontWeight: "bold",
-          }}
-        >
-          Ver Catálogo
-        </a>
-      </section>
+  {/* CONVITE PREMIUM */}
+
+  <div
+    style={{
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      position: "relative",
+    }}
+  >
+    {/* CÍRCULO DECORATIVO */}
+
+    <div
+      style={{
+        position: "absolute",
+        width: 450,
+        height: 450,
+        borderRadius: "50%",
+        background:
+          "linear-gradient(135deg,#f5e6d3,#e9d5c0)",
+        filter: "blur(40px)",
+        opacity: 0.8,
+      }}
+    />
+
+    {/* CARTÃO DE FUNDO */}
+
+    <div
+      style={{
+        position: "absolute",
+        width: 350,
+        height: 500,
+        background: "#f3ede6",
+        borderRadius: 30,
+        transform: "rotate(6deg)",
+        zIndex: 1,
+      }}
+    />
+
+    {/* CONVITE */}
+
+    <div
+      style={{
+        background: "#fff",
+        padding: 15,
+        borderRadius: 30,
+        boxShadow:
+          "0 30px 60px rgba(0,0,0,0.15)",
+        position: "relative",
+        zIndex: 2,
+        transform: "rotate(-2deg)",
+      }}
+    >
+      <img
+        src="/images/Convite de casamento.png"
+        alt="Convite Premium"
+        style={{
+          width: 350,
+          borderRadius: 20,
+          display: "block",
+        }}
+      />
+    </div>
+  </div>
+</section>
     </div>
   );
 }

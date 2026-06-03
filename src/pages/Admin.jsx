@@ -145,14 +145,37 @@ export default function Admin() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-100 p-8">
-      <h1 className="text-5xl font-bold text-pink-500 mb-8">
-        Painel Admin
-      </h1>
+    <div
+  className="min-h-screen p-8"
+  style={{
+    background: "#fdf8f5",
+  }}
+>
+      <div className="text-center mb-12">
+
+  <span className="bg-purple-100 text-purple-700 px-5 py-2 rounded-full">
+    ✨ Área Administrativa
+  </span>
+
+  <h1 className="text-6xl font-bold mt-6 text-[#2b1b14]">
+    Abrakadabra Convites
+  </h1>
+
+  <p className="text-gray-500 mt-4 text-lg">
+    Gerencie seus convites digitais, imagens e preços em um único lugar.
+  </p>
+
+</div>
 
       {/* FORMULÁRIO */}
 
-      <div className="bg-white p-6 rounded-3xl shadow-lg mb-10">
+      <div
+  className="bg-white p-8 rounded-[30px] shadow-xl mb-12"
+  style={{
+    maxWidth: "900px",
+    margin: "0 auto",
+  }}
+>
         <input
           type="text"
           placeholder="Título"
@@ -177,19 +200,32 @@ export default function Admin() {
         />
 
         <input
-          type="file"
-          onChange={(e) => setImagem(e.target.files[0])}
-          className="w-full border p-4 rounded-xl mb-6"
-        />
+  type="file"
+  onChange={(e) => setImagem(e.target.files[0])}
+  className="w-full border p-4 rounded-xl mb-6"
+/>
 
+{imagem && (
+  <div className="mb-6">
+    <img
+      src={URL.createObjectURL(imagem)}
+      alt="Preview"
+      className="w-72 rounded-3xl shadow-lg"
+    />
+  </div>
+)}
         <button
-          onClick={salvarProduto}
-          className="w-full bg-pink-500 hover:bg-pink-600 text-white p-4 rounded-xl font-bold"
-        >
-          {editandoId
-            ? "Atualizar Produto"
-            : "Adicionar Produto"}
-        </button>
+  onClick={salvarProduto}
+  className="w-full text-white p-4 rounded-xl font-bold"
+  style={{
+    background:
+      "linear-gradient(135deg,#ec4899,#a855f7)",
+  }}
+>
+  {editandoId
+    ? "Atualizar Convite"
+    : "Adicionar Convite"}
+</button>
 
         {editandoId && (
           <button
@@ -200,14 +236,30 @@ export default function Admin() {
           </button>
         )}
       </div>
-
+<h2
+  className="text-center text-4xl font-bold mb-10"
+  style={{
+    color: "#2b1b14",
+  }}
+>
+  ✨ Convites Cadastrados
+</h2>
       {/* PRODUTOS */}
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {produtos.map((produto) => (
           <div
             key={produto.id}
-            className="bg-white rounded-3xl overflow-hidden shadow-lg"
+            className="
+bg-white
+rounded-[30px]
+overflow-hidden
+shadow-xl
+hover:shadow-2xl
+hover:-translate-y-2
+transition
+duration-300
+"
           >
             <img
               src={produto.imagem}
