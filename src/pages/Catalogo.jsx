@@ -1,7 +1,9 @@
 import { useEffect, useState, useContext } from "react";
 import { supabase } from "../services/supabase";
 import { CartContext } from "../context/CartContext";
+import { Link } from "react-router-dom";
 import "../styles/Catalogo.css";
+
 export default function Catalogo() {
   const [produtos, setProdutos] = useState([]);
   const [busca, setBusca] = useState("");
@@ -30,7 +32,7 @@ export default function Catalogo() {
       .order("id", { ascending: false });
 
     if (error) {
-      console.log("Erro Supabase:", error);
+      console.log("Erro:", error);
       return;
     }
 
@@ -38,35 +40,46 @@ export default function Catalogo() {
   }
 
   const produtosFiltrados = produtos.filter((produto) => {
-    const matchBusca =
-      produto.titulo
-        ?.toLowerCase()
-        .includes(busca.toLowerCase());
+    const matchBusca = produto.titulo
+      ?.toLowerCase()
+      .includes(busca.toLowerCase());
 
-    const matchCategoria =
-      categoria === "Todos" ||
-      produto.categoria === categoria;
-
-    return matchBusca && matchCategoria;
+    return matchBusca;
   });
 
   return (
-    <div>
-     <header className="header">
-  <div className="logo">
-    Abrakadabra Convites
-  </div>
+    <div className="catalogo-page">
+      {/* HEADER */}
 
-  <div>
-    🛒 {carrinho.length}
-  </div>
-</header>
+      <header className="catalogo-header">
+        <div className="logo">
+          ✨ Abrakadabra Convites
+        </div>
+
+        <div className="carrinho">
+          🛒 {carrinho.length}
+        </div>
+      </header>
+
+      {/* TÍTULO */}
+
+      <section className="catalogo-topo">
+        <h1>Escolha seu Convite</h1>
+
+        <p>
+          Convites digitais personalizados para todos os momentos especiais.
+        </p>
+      </section>
+
+      {/* CATEGORIAS */}
 
       <div className="categorias">
         {categorias.map((item) => (
           <button
             key={item}
-            className="categoria-btn"
+            className={`categoria-btn ${
+              categoria === item ? "ativo" : ""
+            }`}
             onClick={() => setCategoria(item)}
           >
             {item}
@@ -74,62 +87,57 @@ export default function Catalogo() {
         ))}
       </div>
 
-      <div className="catalogo-titulo">
-        <h2>Escolha seu Convite</h2>
-      </div>
+      {/* BUSCA */}
 
       <div className="busca">
         <input
           type="text"
           placeholder="Pesquisar tema..."
           value={busca}
-          onChange={(e) =>
-            setBusca(e.target.value)
-          }
+          onChange={(e) => setBusca(e.target.value)}
         />
       </div>
 
+      {/* PRODUTOS */}
+
       <div className="catalogo-grid">
+        {produtosFiltrados.map((produto) => (
+          <div
+            key={produto.id}
+            className="produto-card"
+          >
+            <img
+              src={produto.imagem}
+              alt={produto.titulo}
+              className="produto-imagem"
+            />
 
-  {produtosFiltrados.map((produto) => (
+            <div className="produto-info">
+              <span className="produto-tag">
+                Convite Digital
+              </span>
 
-    <div
-      key={produto.id}
-      className="produto-card"
-    >
+              <h3>{produto.titulo}</h3>
 
-      <img
-        src={produto.imagem}
-        alt={produto.titulo}
-        className="produto-imagem"
-      />
+              <p className="produto-descricao">
+                {produto.descricao}
+              </p>
 
-      <h3 className="produto-titulo">
-        {produto.titulo}
-      </h3>
+              <div className="produto-footer">
+                <span className="produto-preco">
+                  R$ {produto.preco}
+                </span>
 
-      <p className="produto-descricao">
-        {produto.descricao}
-      </p>
-
-      <p className="produto-preco">
-        R$ {produto.preco}
-      </p>
-
-      <button
-        className="produto-btn"
-        onClick={() =>
-          adicionarCarrinho(produto)
-        }
-      >
-        Personalizar
-      </button>
-
-    </div>
-
-  ))}
-
-</div>
+                <Link to={`/convite/${produto.id}`}>
+                  <button className="produto-btn">
+                    Personalizar
+                  </button>
+                </Link>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }

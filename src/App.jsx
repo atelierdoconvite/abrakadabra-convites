@@ -5,7 +5,7 @@ import Catalogo from "./pages/Catalogo";
 import Admin from "./pages/Admin";
 import Login from "./pages/Login";
 import Produto from "./pages/Produto";
-
+import DetalheConvite from "./pages/DetalheConvite";
 import ProtectedRoute from "./components/ProtectedRoute";
 
 export default function App() {
@@ -15,20 +15,29 @@ export default function App() {
 
       <Route path="/catalogo" element={<Catalogo />} />
 
-      <Route path="/produto/:id" element={<Produto />} />
-      <Route path="/produto/:id" element={<Produto />} />
+      <Route
+        path="/convite/:id"
+        element={<DetalheConvite />}
+      />
+
+      <Route
+        path="/produto/:id"
+        element={<Produto />}
+      />
+
+      <Route
+        path="/login"
+        element={<Login />}
+      />
+
       <Route
         path="/admin"
         element={
           <ProtectedRoute>
             <Admin />
           </ProtectedRoute>
-          
         }
-        
       />
-
-      <Route path="/login" element={<Login />} />
     </Routes>
   );
 }
