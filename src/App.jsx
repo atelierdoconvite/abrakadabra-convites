@@ -7,7 +7,7 @@ import Login from "./pages/Login";
 import Produto from "./pages/Produto";
 import DetalheConvite from "./pages/DetalheConvite";
 import ProtectedRoute from "./components/ProtectedRoute";
-
+import Pedidos from "./pages/Pedidos";
 export default function App() {
   return (
     <Routes>
@@ -38,6 +38,14 @@ export default function App() {
           </ProtectedRoute>
         }
       />
+      <Route
+  path="/pedidos"
+  element={
+    <ProtectedRoute>
+      <Pedidos />
+    </ProtectedRoute>
+  }
+/>
     </Routes>
   );
 }
