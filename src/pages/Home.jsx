@@ -1,3 +1,4 @@
+<h1>VERSÃO TESTE 08/06</h1>
 import { useEffect, useState } from "react";
 import { supabase } from "../services/supabase";
 export default function Home() {
@@ -61,6 +62,7 @@ async function carregarDestaques() {
             fontSize: 24,
           }}
         >
+          <h1>VERSÃO TESTE 08/06</h1>
           ✨ Abrakadabra Convites
         </h1>
 

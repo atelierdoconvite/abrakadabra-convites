@@ -53,9 +53,11 @@ export default function DetalheConvite() {
     console.log("PEDIDO:", pedido);
     console.log("ERRO:", error);
 
+    alert("PEDIDO: " + JSON.stringify(pedido));
+    alert("ERRO: " + JSON.stringify(error));
+
     if (error) {
       alert("Erro ao salvar pedido!");
-      console.log(error);
       return;
     }
 
@@ -79,8 +81,6 @@ Observações: ${observacoes}
     )}`;
 
     window.open(url, "_blank");
-
-    alert("Pedido enviado com sucesso!");
   }
 
   if (!produto) {
@@ -110,8 +110,6 @@ Observações: ${observacoes}
           alignItems: "center",
         }}
       >
-        {/* IMAGEM */}
-
         <div>
           <img
             src={produto.imagem}
@@ -124,8 +122,6 @@ Observações: ${observacoes}
             }}
           />
         </div>
-
-        {/* INFORMAÇÕES */}
 
         <div>
           <span
@@ -143,7 +139,6 @@ Observações: ${observacoes}
             style={{
               fontSize: 48,
               marginTop: 20,
-              color: "#2b1b14",
             }}
           >
             {produto.titulo}
@@ -184,45 +179,35 @@ Observações: ${observacoes}
             <input
               placeholder="Nome do aniversariante"
               value={nome}
-              onChange={(e) =>
-                setNome(e.target.value)
-              }
+              onChange={(e) => setNome(e.target.value)}
               style={inputStyle}
             />
 
             <input
               placeholder="Idade"
               value={idade}
-              onChange={(e) =>
-                setIdade(e.target.value)
-              }
+              onChange={(e) => setIdade(e.target.value)}
               style={inputStyle}
             />
 
             <input
               placeholder="Data da Festa"
               value={dataFesta}
-              onChange={(e) =>
-                setDataFesta(e.target.value)
-              }
+              onChange={(e) => setDataFesta(e.target.value)}
               style={inputStyle}
             />
 
             <input
               placeholder="Horário"
               value={horario}
-              onChange={(e) =>
-                setHorario(e.target.value)
-              }
+              onChange={(e) => setHorario(e.target.value)}
               style={inputStyle}
             />
 
             <input
               placeholder="Local"
               value={local}
-              onChange={(e) =>
-                setLocal(e.target.value)
-              }
+              onChange={(e) => setLocal(e.target.value)}
               style={inputStyle}
             />
 
