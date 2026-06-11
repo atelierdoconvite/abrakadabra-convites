@@ -65,7 +65,9 @@ export default function DetalheConvite() {
 Olá!
 
 Gostaria de personalizar o convite:
-
+<p style={{color: "red", fontWeight: "bold"}}>
+  VERSÃO TESTE 11/06
+</p>
 Tema: ${produto.titulo}
 
 Nome: ${nome}
