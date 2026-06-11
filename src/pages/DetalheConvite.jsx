@@ -239,7 +239,7 @@ Observações: ${observacoes}
                 fontWeight: "bold",
               }}
             >
-              💬 Enviar Pedido pelo WhatsApp
+              💬 🚀 TESTE VERCEL
             </button>
           </div>
         </div>
